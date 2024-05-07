@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Typography, Grid, Card, Stack, CardContent, CardMedia, Container, Paper } from '@mui/material';
+import { Typography, Grid, Card, Stack, CardContent, CardMedia, Box, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import './MovieList.css';
 import CollectionDetails from '../CollectionDetails/CollectionDetails';'../CollectionDetails/CollectionDetails'
 import { useHistory } from 'react-router-dom';
 
@@ -30,43 +31,46 @@ function MovieList() {
   }));
 
   return (
-    <Container sx={{ flexGrow: 1 }}>
-        <CollectionDetails />
-        {/* Cannot for the life of me get these cards to center */}
-        <Grid 
-          container
-          direction="row"
-          justifyContent="space-evenly"
-          alignItems="center">
-            <Item className="movies">
-              {movies.map(movie => {
-                return (
-                  <Card 
-                    data-testid='movieItem' 
-                    key={movie.id} 
-                    sx={{ bgcolor: "secondary", padding: 3, width: 240 }}>
-                      <Stack 
-                        direction="column" 
-                        justifyContent="space-evenly" 
-                        alignItems="center" 
-                        spacing={2}>
-                          <CardContent>
-                            <Typography variant="h6">{movie.title}</Typography>
-                          </CardContent>
-                          <CardMedia
-                            component="img"
-                            alt={movie.title}
-                            height="300"
-                            image={movie.poster} 
-                            data-testid="toDetails"
-                            onClick={() => {getID(movie.id)}} />
-                      </Stack>
-                  </Card>
-                );
-              })}
-            </Item>
-        </Grid>
-  </Container>
+    <div className='movie'>
+      <Box sx={{ flexGrow: 1 }}>
+          <CollectionDetails />
+          <Grid 
+            container
+            spacing={2}          
+            justifyContent="space-evenly"
+            alignItems="center">
+              <Grid item>
+                <Item className="movies">
+                  {movies.map(movie => {
+                    return (
+                      <Card 
+                        data-testid='movieItem' 
+                        key={movie.id} 
+                        sx={{ bgcolor: "secondary", padding: 3, width: 240 }}>
+                          <Stack 
+                            direction="column" 
+                            justifyContent="space-evenly" 
+                            alignItems="center" 
+                            spacing={2}>
+                              <CardContent>
+                                <Typography variant="h6">{movie.title}</Typography>
+                              </CardContent>
+                              <CardMedia
+                                component="img"
+                                alt={movie.title}
+                                height="300"
+                                image={movie.poster} 
+                                data-testid="toDetails"
+                                onClick={() => {getID(movie.id)}} />
+                          </Stack>
+                      </Card>
+                    );
+                  })}
+                </Item>
+              </Grid>
+          </Grid>
+    </Box>
+  </div>
   );
 }
 
