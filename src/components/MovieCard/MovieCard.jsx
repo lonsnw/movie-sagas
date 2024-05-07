@@ -34,9 +34,6 @@ function MovieCard() {
                     justifyContent="space-evenly" 
                     alignItems="center" 
                     spacing={2}>
-                        <CardContent>
-                            <Typography variant="h6">{movie.title}</Typography>
-                        </CardContent>
                         <CardMedia
                             component="img"
                             alt={movie.title}
@@ -44,6 +41,9 @@ function MovieCard() {
                             image={movie.poster} 
                             data-testid="toDetails"
                             onClick={() => {getID(movie.id)}} />
+                        <CardContent>
+                            <Typography variant="h6">{movie.title}</Typography>
+                        </CardContent>
                   </Stack>
               </Card>
             );
