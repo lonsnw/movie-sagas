@@ -12,12 +12,12 @@ function Header() {
     return (
     <div>
         <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ padding: 2 }} onClick={() => {handleClick()}}>
+        <AppBar position="static" align="center" sx={{ padding: 2 }} onClick={() => {handleClick()}}>
           <Toolbar>
-            <Typography sx={{ flexGrow: 1 }} variant="h1" gutterBottom >
+            <Typography sx={{ flexGrow: 1 }} variant="h1" >
               Movies Database
             </Typography>
-            <Button variant="contained" color="secondary">Button</Button>
+            {/* <Button variant="contained" color="secondary">Button</Button> */}
           </Toolbar>
         </AppBar>
         </Box>

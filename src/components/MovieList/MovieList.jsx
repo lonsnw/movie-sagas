@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './MovieList.css';
 import { Typography, Grid, Card, Stack, CardContent, CardMedia, Container, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CollectionDetails from '../CollectionDetails/CollectionDetails';'../CollectionDetails/CollectionDetails'
@@ -31,11 +30,13 @@ function MovieList() {
   }));
 
   return (
-    <Container maxWidth="xl" alignItems="center" justifyContent="center" >
+    <Container sx={{ flexGrow: 1 }}>
         <CollectionDetails />
         {/* Cannot for the life of me get these cards to center */}
-        <Grid container 
-          justifyContent="space-around" 
+        <Grid 
+          container
+          direction="row"
+          justifyContent="space-evenly"
           alignItems="center">
             <Item className="movies">
               {movies.map(movie => {
