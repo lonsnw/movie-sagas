@@ -31,7 +31,7 @@ function App() {
         fontWeight: 600,
       },
     },
-    spacing: 8,
+    spacing: (factor) => `${0.5 * factor}rem`,
     shape: {
       borderRadius: 4,
     },
@@ -52,6 +52,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Header />
+        
         <Router>        
           <Route path="/" exact>
             <MovieList />
