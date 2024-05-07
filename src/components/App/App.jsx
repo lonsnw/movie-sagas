@@ -18,7 +18,7 @@ function App() {
       },
       background: {
         default: '#dfdbef',
-        paper: '#fcfbfd',
+        paper: '#f1eff8',
       },
     },
     typography: {
@@ -27,6 +27,9 @@ function App() {
         fontWeight: 600,
         letterSpacing: '-0.04em',
         fontFamily: "'Lato', sans-serif",
+      },
+      h6: {
+        fontStyle: 'italic',
       },
       fontFamily: "'Lato', sans-serif",
       button: {

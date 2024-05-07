@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css';
-import { Typography, Grid, Card, Stack, CardContent, CardMedia, Box } from '@mui/material';
+import { Typography, Grid, Card, Stack, CardContent, CardMedia, Container, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import CollectionDetails from '../CollectionDetails/CollectionDetails';'../CollectionDetails/CollectionDetails'
 
 function MovieList() {
@@ -13,28 +14,47 @@ function MovieList() {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
 
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(2),
+    textAlign: 'center',
+  }));
+
   return (
-    <Box justifyContent="space-evenly" alignItems="center">
-      <CollectionDetails />
-      <Grid align="center">
-        <section className="movies">
-          {movies.map(movie => {
-            return (
-              <Card data-testid='movieItem' key={movie.id} sx={{ bgcolor: "secondary", padding: 3, width: 200 }}>
-                <Stack direction="column" justifyContent="space-evenly" alignItems="center" spacing={2}>
-                  <CardContent>
-                    <Typography variant="h6">{movie.title}</Typography>
-                  </CardContent>
-                  <CardMedia>
-                    <img src={movie.poster} alt={movie.title}/>
-                  </CardMedia>
-                </Stack>
-              </Card>
-            );
-          })}
-        </section>
-      </Grid>
-  </Box>
+    <Container maxWidth="xl" alignItems="center" justifyContent="center" >
+        <CollectionDetails />
+        {/* Cannot for the life of me get these cards to center */}
+        <Grid container 
+          justifyContent="space-around" 
+          alignItems="center">
+            <Item className="movies">
+              {movies.map(movie => {
+                return (
+                  <Card 
+                    data-testid='movieItem' 
+                    key={movie.id} 
+                    sx={{ bgcolor: "secondary", padding: 3, width: 240 }}>
+                      <Stack 
+                        direction="column" 
+                        justifyContent="space-evenly" 
+                        alignItems="center" 
+                        spacing={2}>
+                          <CardContent>
+                            <Typography variant="h6">{movie.title}</Typography>
+                          </CardContent>
+                          <CardMedia
+                            component="img"
+                            alt={movie.title}
+                            height="300"
+                            image={movie.poster} />
+                      </Stack>
+                  </Card>
+                );
+              })}
+            </Item>
+        </Grid>
+  </Container>
   );
 }
 
