@@ -4,15 +4,24 @@ import './MovieList.css';
 import { Typography, Grid, Card, Stack, CardContent, CardMedia, Container, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CollectionDetails from '../CollectionDetails/CollectionDetails';'../CollectionDetails/CollectionDetails'
+import { useHistory } from 'react-router-dom';
 
 function MovieList() {
 
   const dispatch = useDispatch();
   const movies = useSelector(store => store.movies);
+  const history = useHistory();
+
 
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
+
+  // sending movie ID to saga to load when details page opens?
+  const getID = (movieId) => {
+    dispatch({ type: 'SEND_ID', payload: movieId})
+    history.push('/details')
+  }
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -48,7 +57,8 @@ function MovieList() {
                             alt={movie.title}
                             height="300"
                             image={movie.poster} 
-                            data-testid="toDetails"/>
+                            data-testid="toDetails"
+                            onClick={() => {getID(movie.id)}} />
                       </Stack>
                   </Card>
                 );
