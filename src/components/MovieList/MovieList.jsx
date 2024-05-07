@@ -47,7 +47,8 @@ function MovieList() {
                             component="img"
                             alt={movie.title}
                             height="300"
-                            image={movie.poster} />
+                            image={movie.poster} 
+                            data-testid="toDetails"/>
                       </Stack>
                   </Card>
                 );
