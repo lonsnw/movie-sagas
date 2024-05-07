@@ -1,6 +1,8 @@
 import { Route, HashRouter as Router } from 'react-router-dom';
 import MovieList from '../MovieList/MovieList';
 import Header from '../Header/Header';
+import Details from '../Details/Details';
+import AddMovie from '../AddMovie/AddMovie';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function App() {
@@ -57,11 +59,14 @@ function App() {
           <Route path="/" exact>
             <MovieList />
           </Route>
-          
           {/* Details page */}
-
+          <Route path="/details" exact>
+            <Details />
+          </Route>
           {/* Add Movie page */}
-          
+          <Route path="/add" exact>
+            <AddMovie />
+          </Route>
         </Router>
       </ThemeProvider>
     </div>

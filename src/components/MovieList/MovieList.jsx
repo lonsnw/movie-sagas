@@ -16,7 +16,7 @@ function MovieList() {
   return (
     <Box justifyContent="space-evenly" alignItems="center">
       <CollectionDetails />
-      <Grid>
+      <Grid align="center">
         <section className="movies">
           {movies.map(movie => {
             return (
