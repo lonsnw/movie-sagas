@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css';
+import { Typography, Stack, Card, TextField, Button } from '@mui/material';
+
 
 function MovieList() {
 
@@ -13,14 +15,13 @@ function MovieList() {
 
   return (
     <main>
-      <h1>MovieList</h1>
       <section className="movies">
         {movies.map(movie => {
           return (
-            <div data-testid='movieItem' key={movie.id}>
+            <Card data-testid='movieItem' key={movie.id} sx={{ bgcolor: "secondary", padding: 3, width: 200 }}>
               <h3>{movie.title}</h3>
               <img src={movie.poster} alt={movie.title}/>
-            </div>
+            </Card>
           );
         })}
       </section>
