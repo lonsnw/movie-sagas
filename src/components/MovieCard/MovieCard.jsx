@@ -8,9 +8,10 @@ function MovieCard() {
     const movies = useSelector(store => store.movies);
     const history = useHistory();
 
-  // sending movie ID to saga to load when details page opens?
+  // sending movie ID to saga to load when details page opens
     const getID = (movieId) => {
-        dispatch({ type: 'FETCH_DETAILS', payload: movieId})
+        dispatch({ type: 'FETCH_DETAILS', payload: movieId });
+        dispatch({ type: 'FETCH_GENRES', payload: movieId });
         console.log(movieId);
         history.push('/details')
     }

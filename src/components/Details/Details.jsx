@@ -1,12 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { Box, Button, Card, CardContent, CardMedia, Chip, Typography } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import MovieCreationTwoToneIcon from '@mui/icons-material/MovieCreationTwoTone';
 import './Details.css';
 
 function Details(){
 
-    const dispatch = useDispatch();
     const history = useHistory();
     const details = useSelector(store => store.details);
     const genres = useSelector(store => store.genres)
@@ -15,14 +14,15 @@ function Details(){
         history.push('/');
   }
 
-    console.log(details);
+    console.log('genres:', genres);
 
     return(
         <div className="page" data-testid="movieDetails">
+            <Box className="deets" >
             {details.map(movie => {
                 return (
-            <Box key={movie.id} className="deets" >
-                <Card className="deets" sx={{ maxWidth: 345 }}>
+                <div key={movie.id} className="deets" >
+                <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
                             component="img"
                             alt={movie.title}
@@ -33,9 +33,19 @@ function Details(){
                     </CardContent>
                 </Card>
                 <Typography>{movie.description}</Typography>
+                </div>
+            );
+        })}
+            {genres.map(genre => {
+                return (
+                    <div>
+                        <Chip
+                            key={genre.id}
+                            label={genre.name} />
+                    </div>
+                )
+            })}
             </Box>
-        );
-    })}
             <Button 
                 onClick={() => {handleClick()}} 
                 size="large"

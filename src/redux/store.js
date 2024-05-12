@@ -30,6 +30,21 @@ function* fetchDetails(action) {
   }
 }
 
+function* fetchAllGenres(action) {
+  try {
+    // Get the genres:
+    const movieId = action.payload;
+    const genresResponse = yield axios.get(`/api/genres/${movieId}`);
+    // Set the value of the genres reducer:
+    yield put({
+      type: 'SET_GENRES',
+      payload: genresResponse.data
+    });
+  } catch (error) {
+    console.log('fetchAllGenres error:', error);
+  }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -66,6 +81,7 @@ const details = (state = [], action) => {
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeEvery('FETCH_DETAILS', fetchDetails);
+  yield takeEvery('FETCH_GENRES', fetchAllGenres);
 }
 
 // Create one store that all components can use
