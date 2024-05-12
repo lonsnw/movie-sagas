@@ -22,8 +22,9 @@ function* fetchDetails(action) {
   try {
     // Get the details:
     const movieId = action.payload;
+    console.log(movieId);
     const detailsResponse = yield axios.get(`/api/movies/${movieId}`);
-    yield put({ type: 'GET_DETAILS', payload: detailsResponse.data })
+    yield put({ type: 'SET_DETAILS', payload: detailsResponse.data })
   } catch (error) {
     console.log('fetchDetails error', error);
   }
@@ -52,6 +53,15 @@ const genres = (state = [], action) => {
   }
 }
 
+const details = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_DETAILS':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 // Adding rootSaga to listen for saga actions
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
@@ -63,6 +73,7 @@ const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
+    details,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger),
