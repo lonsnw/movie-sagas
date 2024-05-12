@@ -1,0 +1,15 @@
+.page {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: .5em;
+    row-gap: 10px;
+}
+
+.deets {
+    display : flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: .5em;
+    row-gap: 10px;
+}

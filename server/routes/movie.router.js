@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
     })
 });
 
+// GET for details page
 router.get('/:id', (req, res) => {
   const query = `
   SELECT * FROM "movies"
