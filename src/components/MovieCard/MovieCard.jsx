@@ -10,7 +10,8 @@ function MovieCard() {
 
   // sending movie ID to saga to load when details page opens?
     const getID = (movieId) => {
-        dispatch({ type: 'SEND_ID', payload: movieId})
+        dispatch({ type: 'GET_DETAILS', payload: movieId})
+        console.log(movieId);
         history.push('/details')
     }
 

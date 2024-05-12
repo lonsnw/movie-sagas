@@ -10,7 +10,7 @@ function Details(){
     const history = useHistory();
 
     useEffect(() => {
-        dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ type: 'FETCH_DETAILS' });
         }, []);
 
     const handleClick = () => {

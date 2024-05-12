@@ -9,7 +9,6 @@ function MovieList() {
 
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
